@@ -43,7 +43,10 @@ class TableScraper(SharedMixin):
 
     def run(self):
         response = self.fetch_html(self.url)
-        self.parse(response.text)
+        if response.status_code == 200:
+            self.parse(response.text)
+        else:
+            print(f"URL access failed. Response with status code: {response.status_code}")
 
 
 if __name__ == "__main__":
