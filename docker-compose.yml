@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web-scraper:
+    build: .
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - ./src:/app
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:management
+    environment:
+      - TZ=Europe/Berlin
